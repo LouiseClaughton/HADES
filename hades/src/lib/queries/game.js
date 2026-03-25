@@ -6,9 +6,13 @@ export const GAME_QUERY = gql`
   query GameQuery {
     gameCollection {
       items {
+        image {
+          url
+        }
         title
         releaseDate
         genre
+        slug
       }
     }
   }
