@@ -14,11 +14,11 @@ export default async function Statistics() {
     let averageDeaths = (games.reduce((sum, game) => sum + game.totalDeaths, 0) / games.length).toFixed(0);
 
     return (
-        <div className="w-full py-8 border-t-1 border-[#4E4E4E]">
+        <div className="w-full pt-8 pb-12 border-t-1 border-[#4E4E4E]">
             <h2 className="text-xl font-black font-kode-mono uppercase mb-4">Statistics</h2>
             <div className="grid grid-cols-2 w-full gap-8 bg-grey rounded-[15px] border-light-grey p-8">
                 <div className="font-kode-mono text-sm border-r-1 border-[#4E4E4E]">
-                    <h3 className="font-bold text-base uppercase mb-4">Top Deaths</h3>
+                    <h3 className="font-bold text-base uppercase mb-4">Top Deaths 🏆</h3>
                     <div className="flex flex-col gap-2">
                         {topThree.map((game, index) => (
                             <span key={game.slug || index}>
@@ -28,7 +28,7 @@ export default async function Statistics() {
                     </div>
                 </div>
                 <div className="font-kode-mono text-sm">
-                    <h3 className="font-bold text-base uppercase mb-4">Death Stats</h3>
+                    <h3 className="font-bold text-base uppercase mb-4">Death Stats ☠️</h3>
                     <span>Avg. Deaths per Game - {averageDeaths}</span>
                 </div>
             </div>
