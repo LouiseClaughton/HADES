@@ -1,15 +1,13 @@
 import Image from "next/image";
 import GameImage from "@/app/components/game-image";
 import Statistics from "./components/statistics";
+import Brand from "./components/brand";
 
 export default function Home() {
   return (
-    <div className="flex flex-col flex-1 items-center justify-center bg-zinc-50 font-sans dark:bg-black">
-      <main className="flex flex-1 w-full max-w-4xl flex-col items-center justify-between py-16 px-16 bg-white dark:bg-black sm:items-start">
-        <div className="flex flex-col pb-8">
-          <h1 className="font-jaro text-7xl">ha<span className="text-red-500">d</span>es</h1>
-          <span className="font-kode-mono">a video game death tracker</span>
-        </div>
+    <div className="flex flex-col flex-1 items-center justify-center bg-black">
+      <main className="flex flex-1 w-full max-w-5xl flex-col items-center justify-between py-16 px-16 bg-black sm:items-start">
+        <Brand />
 
         <Statistics />
 
