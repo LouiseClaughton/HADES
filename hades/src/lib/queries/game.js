@@ -1,7 +1,7 @@
 // src/lib/queries/game.js
 import { gql } from "graphql-request";
 
-// GraphQL query for your Game content type
+// GraphQL query for the Game content type
 export const GAME_QUERY = gql`
   query GameQuery {
     gameCollection {
@@ -13,6 +13,7 @@ export const GAME_QUERY = gql`
         releaseDate
         genre
         slug
+        totalDeaths
       }
     }
   }

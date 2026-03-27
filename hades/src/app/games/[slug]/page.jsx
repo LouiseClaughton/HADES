@@ -20,7 +20,7 @@ const GET_GAME_BY_SLUG = gql`
 `;
 
 export default async function GamePage({ params }) {
-  const resolvedParams = await params; // ✅ unwrap
+  const resolvedParams = await params;
   const slug = resolvedParams.slug;
 
   if (!slug) return <p>No slug provided</p>;
