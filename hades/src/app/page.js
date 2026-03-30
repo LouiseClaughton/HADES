@@ -13,7 +13,7 @@ export default function Home() {
 
         {/* Games */}
         <div className="py-8 border-t-1 border-[#4E4E4E]">
-          <h2 className="font-kode-mono text-xl uppercase font-black mb-4">Games</h2>
+          <h2 className="font-kode-mono text-xl uppercase font-black mb-4 text-white">Games</h2>
           <div>
             <GameImage />
           </div>

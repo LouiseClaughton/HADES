@@ -36,7 +36,7 @@ export default async function GamePage({ params }) {
   if (!game) return <p>Game not found</p>;
 
   return (
-    <div className="flex flex-col flex-1 items-center justify-center bg-black">
+    <div className="flex flex-col flex-1 items-center justify-center bg-black text-white">
       <main className="flex flex-1 w-full max-w-5xl flex-col items-center justify-between py-16 px-16 bg-black sm:items-start">
         <Brand className="mb-16"/>
         <div className="flex bg-grey border-light-grey rounded-[15px] p-8 gap-8 w-full mb-12">
