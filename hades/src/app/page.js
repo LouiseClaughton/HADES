@@ -1,4 +1,3 @@
-import Image from "next/image";
 import GameImage from "@/app/components/game-image";
 import Statistics from "./components/statistics";
 import Brand from "./components/brand";
