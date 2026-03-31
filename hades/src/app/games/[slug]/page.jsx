@@ -23,17 +23,43 @@ const GET_GAME_BY_SLUG = gql`
   }
 `;
 
+const GET_SESSION_BY_SLUG = gql`
+  query SessionBySlug($slug: String!) {
+    sessionCollection(where: { game: $slug }) {
+      items {
+        title
+        game
+        date
+        sessionLength
+        totalDeaths
+      }
+    }
+  }
+`;
+
 export default async function GamePage({ params }) {
   const resolvedParams = await params;
   const slug = resolvedParams.slug;
-  const games = await getGameData(client);
 
+  // Get Game
   if (!slug) return <p>No slug provided</p>;
 
-  const data = await client.request(GET_GAME_BY_SLUG, { slug });
-  const game = data.gameCollection.items[0];
+  const gameData = await client.request(GET_GAME_BY_SLUG, { slug });
+  const game = gameData.gameCollection.items[0];
+  console.log(game);
+  const gameGenres = game.genre;
 
   if (!game) return <p>Game not found</p>;
+
+  // Get Sessions
+  const sessionData = await client.request(GET_SESSION_BY_SLUG, { slug });
+  const sessions = sessionData.sessionCollection.items;
+
+  if (!sessions) return <p>No sessions found</p>
+
+  console.log(sessions);
+
+  const totalSessions = sessions.length;
 
   return (
     <div className="flex flex-col flex-1 items-center justify-center bg-black text-white">
@@ -45,10 +71,11 @@ export default async function GamePage({ params }) {
                 <div className="flex flex-col gap-2 mb-4">
                   <h1 className="text-4xl font-jaro">{game.title}</h1>
                   <div className="font-kode-mono uppercase text-sm">
-                    <span>Released: {game.releaseDate}</span> ◆ <span>Genre: {game.genre}</span>
+                    <span>Released: {game.releaseDate}</span> ◆ <span>Genre: {gameGenres.join(", ")}</span>
                   </div>
                 </div>
                 <p className="text-sm font-kode-mono">Total Deaths: {game.totalDeaths}</p>
+                <p className="text-sm font-kode-mono">Total Sessions: {totalSessions}</p>
             </div>
         </div>
         
