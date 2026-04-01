@@ -52,7 +52,7 @@ export default async function GamePage({ params }) {
 
   return (
     <div className="flex flex-col flex-1 items-center justify-center bg-black text-white">
-      <main className="flex flex-1 w-full max-w-5xl flex-col items-center justify-between py-16 px-16 bg-black sm:items-start">
+      <main className="flex flex-1 w-full max-w-5xl flex-col items-center justify-between py-16 px-8 lg:px-16 bg-black sm:items-start">
         
         <Brand />
 

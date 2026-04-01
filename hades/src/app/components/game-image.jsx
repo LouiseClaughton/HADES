@@ -51,7 +51,7 @@ export default async function GameImage({ genre, currentGame }) {
             <img src={game.image.url} alt={game.title} className="w-full h-auto" />
           </a>
           <div className="pointer-events-none absolute inset-0 flex items-center justify-center transition-colors duration-300 bg-transparent group-hover:bg-black/65">
-            <span className="text-white text-lg text-center font-semibold opacity-0 group-hover:opacity-100 transition-opacity">{game.title}</span>
+            <span className="text-white text-lg text-center font-semibold opacity-0 group-hover:opacity-100 transition-opacity px-4">{game.title}</span>
           </div>
         </div>
       ))}

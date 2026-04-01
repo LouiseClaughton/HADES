@@ -1,7 +1,7 @@
 export default async function Brand({ className }) {
 
     return (
-        <div className={`flex flex-col pb-8 ${className}`}>
+        <div className={`w-full flex flex-col pb-8 ${className}`}>
             <a href="/">
                 <h1 className="font-jaro text-7xl lowercase text-white">Ha<span className="text-red-500">d</span>es</h1>
             </a>
