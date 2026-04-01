@@ -7,10 +7,12 @@ export const SESSION_QUERY = gql`
     sessionCollection {
       items {
         title
-        game
+        gameTitle
+        gameSlug
         date
         sessionLength
         totalDeaths
+        notes
       }
     }
   }
