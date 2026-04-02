@@ -13,7 +13,6 @@ export const GAME_QUERY = gql`
         releaseDate
         genre
         slug
-        totalDeaths
       }
     }
   }

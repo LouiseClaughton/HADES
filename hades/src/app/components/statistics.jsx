@@ -9,19 +9,34 @@ export default async function Statistics() {
 
     // *** GAMES FUNCTIONS ***
 
+    // Total Deaths per game
+    const deathsPerGame = sessions.reduce((acc, session) => {
+        const slug = session.gameSlug;
+        acc[slug] = (acc[slug] || 0) + Number(session.totalDeaths);
+        return acc;
+    }, {});
+
     // sort games by death HIGH → LOW and get the top three
-    const topThreeGames = [...games].sort((a, b) => {
-        return b.totalDeaths - a.totalDeaths;
-    }).slice(0, 3);
+    const topThreeGames = [...games]
+        .sort((a, b) => (deathsPerGame[b.slug] || 0) - (deathsPerGame[a.slug] || 0))
+        .slice(0, 3);
 
     // Calculate average deaths over all games
-    let averageDeaths = (games.reduce((sum, game) => sum + game.totalDeaths, 0) / games.length).toFixed(0);
+    const averageDeaths = (
+        games.reduce((sum, game) => {
+            return sum + (deathsPerGame[game.slug] || 0);
+        }, 0) / games.length
+    ).toFixed(0);
 
     // Group deaths by genre
     const deathsByGenre = games.reduce((acc, game) => {
-        acc[game.genre] = (acc[game.genre] || 0) + game.totalDeaths;
+        const deaths = deathsPerGame[game.slug] || 0;
+        acc[game.genre] = (acc[game.genre] || 0) + deaths;
         return acc;
     }, {});
+
+    const totalDeaths = Object.values(deathsPerGame)
+        .reduce((sum, deaths) => sum + deaths, 0);
 
     // Sort genres by total deaths
     const genresSorted = Object.entries(deathsByGenre)
@@ -72,7 +87,7 @@ export default async function Statistics() {
                         <div className="flex flex-col gap-2">
                             {topThreeGames.map((game, index) => (
                                 <span key={game.slug || index} className="py-4 lg:py-0">
-                                    {index + 1}. {game.title} - {game.totalDeaths}
+                                    {index + 1}. {game.title} - {deathsPerGame[game.slug] || 0}
                                 </span>
                             ))}
                         </div>
@@ -80,6 +95,7 @@ export default async function Statistics() {
                     <div className="font-kode-mono text-sm">
                         <h3 className="font-bold text-base uppercase mb-4 text-white">Death Stats ☠️</h3>
                         <div className="flex flex-col gap-2 text-white">
+                            <span className="py-4 lg: py-0">Total Deaths: {totalDeaths}</span>
                             <span className="py-4 lg:py-0">Avg. Deaths per Game - {averageDeaths}</span>
                             <span className="py-4 lg:py-0">Genre with Most Deaths: {topGenre[0]} ({topGenre[1]})</span>
                         </div>

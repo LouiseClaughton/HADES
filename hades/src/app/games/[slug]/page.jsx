@@ -20,7 +20,6 @@ export default async function GamePage({ params }) {
             url
             title
           }
-          totalDeaths
         }
       }
     }
@@ -50,6 +49,18 @@ export default async function GamePage({ params }) {
   const sessions = sessionData.sessionCollection.items;
   const totalSessions = sessions.length;
 
+  let totalDeaths = 0;
+
+  sessions.forEach((session) => {
+    totalDeaths += Number(session.totalDeaths);
+  });
+
+  const averageDeaths = (
+        sessions.reduce((sum, session) => {
+            return sum + (Number(session.totalDeaths) || 0);
+        }, 0) / sessions.length
+    ).toFixed(0);
+
   return (
     <div className="flex flex-col flex-1 items-center justify-center bg-black text-white">
       <main className="flex flex-1 w-full max-w-5xl flex-col items-center justify-between py-16 px-8 lg:px-16 bg-black sm:items-start">
@@ -65,8 +76,9 @@ export default async function GamePage({ params }) {
               <div className="font-kode-mono uppercase text-sm mb-4 border-b-1 border-[#4E4E4E] pb-4">
                   <span>Released: {game.releaseDate}</span> ◆ <span>Genre: {gameGenres.join(", ")}</span>
               </div>
-              <p className="text-sm font-kode-mono">Total Deaths: {game.totalDeaths}</p>
-              <p className="text-sm font-kode-mono">Total Sessions: {totalSessions}</p>       
+              <p className="text-sm font-kode-mono">Total Deaths: {totalDeaths}</p>
+              <p className="text-sm font-kode-mono">Total Sessions: {totalSessions}</p>
+              <p className="text-sm font-kode-mono">Average Deaths per Session: {averageDeaths} </p>       
             </div>
           </div>
         </div>
