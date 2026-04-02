@@ -95,7 +95,7 @@ export default async function Statistics() {
                     <div className="font-kode-mono text-sm">
                         <h3 className="font-bold text-base uppercase mb-4 text-white">Death Stats ☠️</h3>
                         <div className="flex flex-col gap-2 text-white">
-                            <span className="py-4 lg: py-0">Total Deaths: {totalDeaths}</span>
+                            <span className="py-4 lg:py-0">Total Deaths: {totalDeaths}</span>
                             <span className="py-4 lg:py-0">Avg. Deaths per Game - {averageDeaths}</span>
                             <span className="py-4 lg:py-0">Genre with Most Deaths: {topGenre[0]} ({topGenre[1]})</span>
                         </div>
