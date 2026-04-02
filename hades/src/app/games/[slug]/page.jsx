@@ -56,10 +56,11 @@ export default async function GamePage({ params }) {
   });
 
   const averageDeaths = (
-        sessions.reduce((sum, session) => {
-            return sum + (Number(session.totalDeaths) || 0);
-        }, 0) / sessions.length
-    ).toFixed(0);
+    sessions.reduce((sum, session) => {
+      const deaths = Number(session.totalDeaths ?? 0); // prevents NaN
+      return sum + deaths;
+    }, 0) / (sessions.length || 1)
+  ).toFixed(0);
 
   return (
     <div className="flex flex-col flex-1 items-center justify-center bg-black text-white">
