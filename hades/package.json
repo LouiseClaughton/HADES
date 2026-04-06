@@ -8,7 +8,7 @@
     "start": "next start"
   },
   "dependencies": {
-    "@netlify/plugin-nextjs": "^5.15.9",
+    "@opennextjs/cloudflare": "^1.18.0",
     "graphql": "^16.13.2",
     "graphql-request": "^7.4.0",
     "next": "16.2.1",
