@@ -1,14 +1,12 @@
 // open-next.config.ts
-export default {
-  // Directory where OpenNext will output the built app
+const config = {
   output: '.open-next',
 
-  // If you have API routes in your Next.js app
-  // functionsDir: 'functions',
+  // Optional: your API routes if you had Netlify functions
+  functionsDir: 'netlify/functions',
 
-  // Optional: base path if your site is served under a subpath
-  // basePath: '/',
-
-  // Optional: preview mode secret for Contentful previews
-  // previewMode: { secret: process.env.CONTENTFUL_PREVIEW_SECRET }
+  // Optional: preview secret if you use Contentful preview mode
+  previewMode: { secret: process.env.CONTENTFUL_PREVIEW_TOKEN },
 }
+
+export default config
