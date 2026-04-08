@@ -30,11 +30,14 @@ export default function GameGrid() {
         <div>
             <div className="grid grid-cols-2 lg:grid-cols-4 gap-4">
                 {paginated.map(game => (
-                <div key={game.slug}>
-                    <a href={`/games/${game.slug}`}>
-                        <img src={game.image.url} alt={game.title} />
-                    </a>
-                </div>
+                    <div key={game.slug} className="relative flex items-center justify-center group hover:cursor-pointer">
+                        <a href={`/games/${game.slug}`}>
+                            <img src={game.image.url} alt={game.title} className="w-full h-auto" />
+                        </a>
+                        <div className="pointer-events-none absolute inset-0 flex items-center justify-center transition-colors duration-300 bg-transparent group-hover:bg-black/65">
+                            <span className="text-white text-lg text-center font-semibold opacity-0 group-hover:opacity-100 transition-opacity px-4">{game.title}</span>
+                        </div>
+                    </div>
                 ))}
             </div>
 
