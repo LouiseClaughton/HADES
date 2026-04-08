@@ -1,6 +1,6 @@
-import GameImage from "@/app/components/game-image";
 import Statistics from "./components/statistics";
 import Brand from "./components/brand";
+import GameGrid from "./components/game-grid";
 
 export default function Home() {
   return (
@@ -14,7 +14,7 @@ export default function Home() {
         <div className="py-8 border-t-1 border-[#4E4E4E]">
           <h2 className="font-kode-mono text-xl uppercase font-black mb-4 text-white">Games</h2>
           <div>
-            <GameImage />
+            <GameGrid />
           </div>
         </div>
       </main>
