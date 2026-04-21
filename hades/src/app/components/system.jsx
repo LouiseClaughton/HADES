@@ -5,38 +5,31 @@ import Sun from "@/assets/sun";
 import Moon from "@/assets/moon";
 
 export default function ThemeToggle({ className }) {
-    const [mode, setMode] = useState(() => {
-        if (typeof window === "undefined") return "light";
-
-        const saved = localStorage.getItem("mode");
-        if (saved) return saved;
-
-        const systemDark = window.matchMedia("(prefers-color-scheme: dark)").matches;
-        return systemDark ? "dark" : "light";
-    });
-
-    const toggleMode = () => {
-        setMode(prev => (prev === "dark" ? "light" : "dark"));
-    };
+    const [mounted, setMounted] = useState(false);
 
     useEffect(() => {
+        setMounted(true);
+    }, []);
+
+    const toggleMode = () => {
+        if (!mounted) return;
+
         const root = document.documentElement;
+        const isDark = root.classList.contains("dark");
 
-        if (mode === "dark") {
-            root.classList.add("dark");
-        } else {
-            root.classList.remove("dark");
-        }
-
-        localStorage.setItem("mode", mode);
-    }, [mode]);
+        root.classList.toggle("dark", !isDark);
+        localStorage.setItem("mode", !isDark ? "dark" : "light");
+    };
 
     return (
-        <div onClick={toggleMode} className={`${mode == 'light' ? 'bg-gray-100' : 'bg-zinc-800'} flex gap-2 p-2 rounded-[15px] ${className}`}>
-            <div className={`${mode == 'light' ? 'bg-gray-200': 'bg-zinc-800'} rounded-[15px] p-2 transition-colors`}>
+        <div
+            onClick={toggleMode}
+            className={`bg-gray-100 dark:bg-zinc-800 flex gap-2 p-2 rounded-[15px] ${className} ${!mounted ? "opacity-50 pointer-events-none" : ""}`}
+        >
+            <div className="bg-gray-200 dark:bg-zinc-800 rounded-[15px] p-2 transition-colors hover:cursor-pointer">
                 <Sun className="text-black dark:text-white" />
             </div>
-            <div className={`${mode == 'dark' ? 'bg-zinc-600': 'bg-gray-100'} rounded-[15px] p-2 transition-colors`}>
+            <div className="bg-gray-100 dark:bg-zinc-600 rounded-[15px] p-2 transition-colors hover:cursor-pointer">
                 <Moon className="text-black dark:text-white" />
             </div>
         </div>
