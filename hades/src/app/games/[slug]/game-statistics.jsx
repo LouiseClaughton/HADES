@@ -42,28 +42,28 @@ export default function GameStats({ game, sessions }) {
     }, []);
 
     return (
-        <div className="flex flex-col lg:flex-row bg-grey border-light-grey rounded-[15px] p-8 gap-8 w-full justify-between">
-            {selectedSession ? (
-                <div>
-                    <p className="text-sm text-white">
-                        Session Date:{" "}
-                        {new Intl.DateTimeFormat("fr-FR").format(
-                            new Date(selectedSession.date)
-                        )}
-                    </p>
+        <div className="flex flex-col lg:flex-row bg-gray-100 dark:bg-zinc-800 border-light-grey rounded-[15px] p-8 gap-8 w-full justify-between">
+            {selectedSession ? 
+                (
+                    <div className="text-black dark:text-white">
+                        <p className="text-sm">
+                            Session Date:{" "}
+                            {new Intl.DateTimeFormat("fr-FR").format(
+                                new Date(selectedSession.date)
+                            )}
+                        </p>
 
-                    <p className="text-sm text-white">Deaths: {selectedSession.totalDeaths}</p>
+                        <p className="text-sm">Deaths: {selectedSession.totalDeaths}</p>
 
-                    <div className="my-4 text-sm text-white min-h-16">
-                        <strong>Notes</strong>
-                        <p>{selectedSession.notes ? selectedSession.notes : "No notes"}</p>
+                        <div className="my-4 text-sm min-h-16">
+                            <strong>Notes</strong>
+                            <p>{selectedSession.notes ? selectedSession.notes : "No notes"}</p>
+                        </div>
+
                     </div>
-
-                </div>
-            ) : (
-                <p className="text-sm text-white">No sessions recorded yet. Start playing!</p>
-            )
-            
+                ) : (
+                    <p className="text-sm text-black dark:text-white">No sessions recorded yet. Start playing!</p>
+                )
             }
 
             {/* Bars */}

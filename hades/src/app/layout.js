@@ -31,7 +31,26 @@ export default function RootLayout({ children }) {
     <html
       lang="en"
       className={`${geistSans.variable} ${geistMono.variable} ${jaro.variable} ${kodeMono.variable} h-full antialiased`}
+      suppressHydrationWarning
     >
+      <head>
+        <script
+          dangerouslySetInnerHTML={{
+            __html: `
+              (function() {
+                const saved = localStorage.getItem("mode");
+                const systemDark = window.matchMedia("(prefers-color-scheme: dark)").matches;
+
+                if (saved === "dark" || (!saved && systemDark)) {
+                  document.documentElement.classList.add("dark");
+                } else {
+                  document.documentElement.classList.remove("dark");
+                }
+              })();
+            `,
+          }}
+        />
+      </head>
       <body className="min-h-full flex flex-col">{children}</body>
     </html>
   );
